@@ -18,13 +18,13 @@ check_environment() {
 install_depend() {
     output "update yum repo and install default software"
     yum update -y && yum upgrade -y
-    yum install -y git ctags tmux openssl-devel gcc g++ mariadb zlib-devel nload fail2ban vim
+    yum install -y git ctags tmux openssl-devel gcc g++ mariadb mariadb-devel mariadb-libs zlib-devel nload fail2ban vim git libxml2-devel libxslt-dev python-devel nload
     clear
 }
 
 install_dotfiles() {
     output "install dot files"
-    git clone https://github.com/meliuyue/linux-user-config.git >/dev/null 2>&1
+    git clone https://github.com/toloy/linux-dotfiles.git >/dev/null 2>&1
     cd linux-user-config && chmod a+x run.sh && ./run.sh && cd - >/dev/null
 }
 
@@ -78,9 +78,9 @@ cd ${TMP_DIR}
 
 install_depend
 install_dotfiles
-install_ocserv
-install_ss
-update_firewall
+# install_ocserv
+# install_ss
+# update_firewall
 config_server
 output "all ok,enjoy~"
 
